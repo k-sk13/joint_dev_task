@@ -65,7 +65,8 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  upper_case_programming_languages = programming_languages.map(&:upcase!)
+  programming_languages.map(&:capitalize!)
+  upper_case_programming_languages = programming_languages.map(&:upcase)
 
 
   # 以下は変更しないで下さい
@@ -77,32 +78,37 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each_with_index{|name, index|
-    index += 1
-    puts "会員No,#{index} #{name}さん"
-  }
-
+  names.each.with_index(1) { |name, i|
+    puts "会員No.#{i} #{name}さん"}
 end
 
 def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
 
   # 以下に回答を記載
-
+  foods.each do |food|
+    if food.include?("うに")
+      puts "#{food}:好物です"
+    else
+      puts "#{food}:まぁまぁ好きです"
+    end
+  end
 end
 
 def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-
+    sports.flatten.uniq!.each.with_index(1) do |sports , i|
+      puts "No#{i} #{sports}"
+    end
 end
 
 def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
-
+  puts data[:user][:name]
 end
 
 def q13
