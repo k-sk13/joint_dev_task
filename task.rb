@@ -133,8 +133,18 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
+  #回答１
   puts data1.include?(:age)? "OK" : "NG"
   puts data2.include?(:age)? "OK" : "NG"
+
+  puts "--------------------------------"
+
+  #回答２
+  data = [data1, data2]
+  data.each do |data|
+  puts data.key?(:age) ? "OK" : "NG"
+  end
+
 end
 
 def q16
@@ -183,6 +193,19 @@ end
 
 class UserQ18
   # 以下に回答を記載
+    def initialize(params)
+      @name = params[:name]
+      @age = params[:age]
+    end
+
+    #年齢が成人しているかで条件分岐させる
+    def introduce
+      if @age >= 20
+        puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+      else
+        puts "はいさいまいど〜、#{@name}です！！！"
+      end
+    end
 
 end
 
@@ -197,9 +220,15 @@ end
 
 class Item
   # 以下を修正して下さい
+  #読み取り用のメソッドを定義する
+  attr_reader :name
 
-  def initialize(name)
+  def initialize(name:)
     @name = name
+  end
+
+  def book
+      puts @name
   end
 end
 
