@@ -193,7 +193,7 @@ end
 
 class UserQ18
   # 以下に回答を記載
-    def initialize(params)
+    def initialize(**params)
       @name = params[:name]
       @age = params[:age]
     end
@@ -201,9 +201,9 @@ class UserQ18
     #年齢が成人しているかで条件分岐させる
     def introduce
       if @age >= 20
-        puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+        "こんにちは、#{@name}と申します。宜しくお願いいたします。"
       else
-        puts "はいさいまいど〜、#{@name}です！！！"
+        "はいさいまいど〜、#{@name}です！！！"
       end
     end
 
@@ -226,10 +226,6 @@ class Item
   def initialize(name:)
     @name = name
   end
-
-  def book
-      puts @name
-  end
 end
 
 def q19
@@ -240,14 +236,39 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  #読み取り専用を定義する
+  attr_reader :name, :age
+  #インスタンスを初期化する
+  def initialize(**params)
+    @name = params[:name]
+    @age  = params[:age]
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  #インスタンスを初期化する
+  def initialize(**params)
+    @name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
 
+  #info_entry_feeメソッドを定義
+  #Userの年齢によって入場料金を決定するメソッド
+  def info_entry_fee(user)
+    price = case user.age
+    when 0..5 then
+      @entry_fee[:infant]
+    when 6..12 then
+      @entry_fee[:children]
+    when 13..64 then
+      @entry_fee[:adult]
+    when 65..120 then
+      @entry_fee[:senior]
+    end
+    puts "#{user.name}さんの入場料金は#{price}円です。"
+  end
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
